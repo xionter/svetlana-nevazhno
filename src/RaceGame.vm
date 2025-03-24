@@ -48,6 +48,8 @@ add
 pop local 1
 goto WHILE_EXP0
 label WHILE_END0
+push constant 10
+pop this 4
 push constant 4
 call Array.new 1
 pop this 9
@@ -186,10 +188,6 @@ push this 3
 push local 3
 add
 pop this 3
-push pointer 0
-push local 3
-call RaceGame.handleSpeedIncreasing 2
-pop temp 0
 push pointer 0
 call RaceGame.drawFrame 1
 pop temp 0

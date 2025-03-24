@@ -40,7 +40,7 @@ class RaceGame
 
       // initialize road
       //let road = Road.new();
-      //let roadSpeed = 10;
+      let roadSpeed = 10;
 
       // initialize enemy spawn coordinates
       let enemySpawnYCoords = Array.new(4);
@@ -103,7 +103,6 @@ class RaceGame
 
             let deadCarsCount = handleCarsDeaths();
             let score = score + deadCarsCount;
-            do handleSpeedIncreasing(deadCarsCount);
 
             do drawFrame();
             

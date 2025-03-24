@@ -99,11 +99,10 @@ class RaceGame
             if (key = 132) { do player.move(1, 0); }  // down arrow   
 
             do moveEnemies();
-            //do road.moveMarking(roadSpeed);
+            do road.moveMarking(roadSpeed);
 
             let deadCarsCount = handleCarsDeaths();
             let score = score + deadCarsCount;
-            do handleSpeedIncreasing(deadCarsCount);
 
             do drawFrame();
             

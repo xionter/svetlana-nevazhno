@@ -1,4 +1,4 @@
-function RaceGame.new 2
+function Game.new 2
 push constant 12
 call Memory.alloc 1
 pop pointer 0
@@ -89,27 +89,21 @@ push constant 0
 pop this 3
 push pointer 0
 return
-function RaceGame.run 2
+function Game.run 2
 push argument 0
 pop pointer 0
 push pointer 0
-call RaceGame.handleStartGame 1
+call Game.handleStartGame 1
 pop local 0
 push local 0
 call Random.new 1
 pop this 10
-push this 11
-call Interface.getDifficulty 1
-push constant 1
-add
+push constant 123
 pop this 6
-push constant 9
-push this 11
-call Interface.getDifficulty 1
-sub
+push constant 23
 pop this 2
 push pointer 0
-call RaceGame.handleGameProcess 1
+call Game.handleGameProcess 1
 pop temp 0
 call Screen.clearScreen 0
 pop temp 0
@@ -118,11 +112,11 @@ push this 3
 call Interface.drawFinalWindow 2
 pop temp 0
 push pointer 0
-call RaceGame.handleEndGame 1
+call Game.handleEndGame 1
 pop temp 0
 push constant 0
 return
-function RaceGame.handleGameProcess 4
+function Game.handleGameProcess 4
 push argument 0
 pop pointer 0
 push constant 0
@@ -179,17 +173,17 @@ call PlayerCar.move 3
 pop temp 0
 label IF_FALSE3
 push pointer 0
-call RaceGame.moveEnemies 1
+call Game.moveEnemies 1
 pop temp 0
 push pointer 0
-call RaceGame.handleCarsDeaths 1
+call Game.handleCarsDeaths 1
 pop local 3
 push this 3
 push local 3
 add
 pop this 3
 push pointer 0
-call RaceGame.drawFrame 1
+call Game.drawFrame 1
 pop temp 0
 push constant 0
 pop local 1
@@ -205,7 +199,7 @@ if-goto IF_TRUE4
 goto IF_FALSE4
 label IF_TRUE4
 push pointer 0
-call RaceGame.trySpawnEnemy 1
+call Game.trySpawnEnemy 1
 pop temp 0
 push constant 0
 pop local 2
@@ -218,7 +212,7 @@ goto WHILE_EXP0
 label WHILE_END0
 push constant 0
 return
-function RaceGame.handleSpeedIncreasing 0
+function Game.handleSpeedIncreasing 0
 push argument 0
 pop pointer 0
 push argument 1
@@ -251,7 +245,7 @@ label IF_FALSE1
 label IF_FALSE0
 push constant 0
 return
-function RaceGame.handleStartGame 1
+function Game.handleStartGame 1
 push argument 0
 pop pointer 0
 call Keyboard.keyPressed 0
@@ -261,9 +255,9 @@ call Interface.drawWelcomeWindow 1
 pop temp 0
 push pointer 0
 push local 0
-call RaceGame.handleDifficultyChoosing 2
+call Game.handleDifficultyChoosing 2
 return
-function RaceGame.handleDifficultyChoosing 1
+function Game.handleDifficultyChoosing 1
 push argument 0
 pop pointer 0
 label WHILE_EXP0
@@ -281,62 +275,11 @@ add
 push constant 32767
 call Utils.mod 2
 pop local 0
-push argument 1
-push constant 131
-eq
-push argument 1
-push constant 133
-eq
-or
-if-goto IF_TRUE0
-goto IF_FALSE0
-label IF_TRUE0
-push pointer 0
-push argument 1
-call RaceGame.handleChangingDifficulty 2
-pop temp 0
-label IF_FALSE0
 goto WHILE_EXP0
 label WHILE_END0
 push local 0
 return
-function RaceGame.handleChangingDifficulty 0
-push argument 0
-pop pointer 0
-call Screen.clearScreen 0
-pop temp 0
-push argument 1
-push constant 131
-eq
-if-goto IF_TRUE0
-goto IF_FALSE0
-label IF_TRUE0
-push this 11
-push constant 1
-neg
-call Interface.moveDifficultyPointer 2
-pop temp 0
-label IF_FALSE0
-push argument 1
-push constant 133
-eq
-if-goto IF_TRUE1
-goto IF_FALSE1
-label IF_TRUE1
-push this 11
-push constant 1
-call Interface.moveDifficultyPointer 2
-pop temp 0
-label IF_FALSE1
-push this 11
-call Interface.drawWelcomeWindow 1
-pop temp 0
-push constant 200
-call Sys.wait 1
-pop temp 0
-push constant 0
-return
-function RaceGame.handleEndGame 0
+function Game.handleEndGame 0
 push argument 0
 pop pointer 0
 label WHILE_EXP0
@@ -350,7 +293,7 @@ goto WHILE_EXP0
 label WHILE_END0
 push constant 0
 return
-function RaceGame.drawFrame 0
+function Game.drawFrame 0
 push argument 0
 pop pointer 0
 call Screen.clearScreen 0
@@ -359,7 +302,7 @@ push this 7
 call PlayerCar.draw 1
 pop temp 0
 push pointer 0
-call RaceGame.drawEnemies 1
+call Game.drawEnemies 1
 pop temp 0
 push this 11
 push this 3
@@ -367,7 +310,7 @@ call Interface.drawPlayerScore 2
 pop temp 0
 push constant 0
 return
-function RaceGame.handleCarsDeaths 3
+function Game.handleCarsDeaths 3
 push argument 0
 pop pointer 0
 push constant 0
@@ -412,7 +355,7 @@ push this 7
 call PlayerCar.GetX 1
 push this 7
 call PlayerCar.GetY 1
-call RaceGame.conflictHappened 5
+call Game.conflictHappened 5
 if-goto IF_TRUE2
 goto IF_FALSE2
 label IF_TRUE2
@@ -428,7 +371,7 @@ goto WHILE_EXP0
 label WHILE_END0
 push local 2
 return
-function RaceGame.moveEnemies 2
+function Game.moveEnemies 2
 push argument 0
 pop pointer 0
 push constant 0
@@ -464,7 +407,7 @@ goto WHILE_EXP0
 label WHILE_END0
 push constant 0
 return
-function RaceGame.drawEnemies 2
+function Game.drawEnemies 2
 push argument 0
 pop pointer 0
 push constant 0
@@ -498,7 +441,7 @@ goto WHILE_EXP0
 label WHILE_END0
 push constant 0
 return
-function RaceGame.trySpawnEnemy 4
+function Game.trySpawnEnemy 4
 push argument 0
 pop pointer 0
 push this 10
@@ -561,7 +504,7 @@ label IF_FALSE1
 label IF_FALSE0
 push constant 0
 return
-function RaceGame.conflictHappened 8
+function Game.conflictHappened 8
 push argument 0
 pop pointer 0
 push argument 1
@@ -616,7 +559,7 @@ push local 6
 push local 7
 or
 return
-function RaceGame.dispose 0
+function Game.dispose 0
 push argument 0
 pop pointer 0
 push this 7

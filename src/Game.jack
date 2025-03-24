@@ -1,4 +1,4 @@
-class RaceGame
+class Game
 {
    field boolean isRunning;
 
@@ -13,7 +13,7 @@ class RaceGame
    field Interface interface;
    
 
-   constructor RaceGame new()
+   constructor Game new()
    {
       var EnemyCar currentEnemy;
       var int i;
@@ -67,8 +67,8 @@ class RaceGame
       // easy:   rate = once per 9 frames | acceleration = 1
       // medium: rate = once per 8 frames | acceleration = 2
       // hard:   rate = once per 7 frames | acceleration = 3
-      let enemiesAcceleration = interface.getDifficulty() + 1;
-      let enemySpawnRate = 9 - interface.getDifficulty();
+      let enemiesAcceleration = 123 ;
+      let enemySpawnRate = 23;
 
       do handleGameProcess();
 
@@ -155,27 +155,9 @@ class RaceGame
       {
          let key = Keyboard.keyPressed();
          let randomSeed = Utils.mod(randomSeed + 1, 32767);
-         
-         if ((key = 131) | (key = 133))
-         {
-            do handleChangingDifficulty(key);
-         }
       }
 
       return randomSeed;
-   }
-
-   method void handleChangingDifficulty(char key)
-   {
-      do Screen.clearScreen();
-
-      if (key = 131) { do interface.moveDifficultyPointer(-1); }  // up arrow
-      if (key = 133) { do interface.moveDifficultyPointer(1); }  // down arrow
-
-      do interface.drawWelcomeWindow();
-      do Sys.wait(200);
-
-      return;
    }
 
    method void handleEndGame()
